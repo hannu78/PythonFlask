@@ -20,7 +20,7 @@
     {# call super() if you want to import code from base.html #}
     {{super()}}
     <div class = "my_container">
-        <form action = "/" method = "POST">
+        <form action = "/register" method = "POST">
             {{ form.csrf_token }}
             {{ form.email.label }}
             {{ form.email(class = 'form-control', id = 'email') }}

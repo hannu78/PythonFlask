@@ -3,6 +3,11 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Required, Email
 
 class LoginForm(Form):
-    username = StringField('Enter your email', validators = [Required(), Email()])
+    email = StringField('Enter your email', validators = [Required(), Email()])
     passw = PasswordField('Enter password', validators = [Required()])
     submit = SubmitField('Login')
+
+class RegisterForm(Form):
+    email = StringField('Enter your email', validators = [Required(), Email()])
+    passw = PasswordField('Enter password', validators = [Required()])
+    submit = SubmitField('Register')
