@@ -16,9 +16,11 @@ class Friends(db.Model):
     name = db.Column(db.String)
     address = db.Column(db.String)
     age = db.Column(db.Integer)
+    email = db.Column(db.String)
     user_id= db.Column(db.Integer,db.ForeignKey('user.id'))
-    def __init__(self, name, address, age, user_id):
+    def __init__(self, name, address, age, email, user_id):
         self.name = name
         self.address = address
         self.age = age
+        self.email = email
         self.user_id = user_id

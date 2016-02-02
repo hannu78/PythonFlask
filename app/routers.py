@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, make_response, flash, redirect
-from app.forms import LoginForm, RegisterForm
-from app.dbmodels import User
+from app.forms import LoginForm, RegisterForm, AddFriendForm
+from app.dbmodels import User, Friends
 from app import db
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -48,9 +48,24 @@ def registerUser():
 
 @app.route('/users',methods=['GET'])
 def listUsers():
-	user = User.query.all();
-	print(user[0].username);
-        
+	user = User.query.all()
+	print(user[0].username)
+
+@app.route('/add', methods = ['GET', 'POST'])
+def addFriend():
+    form = AddFriendForm()
+    if request.method == 'GET':
+        return render_template('template_friend.html', form = form)
+    else:
+        if form.validate_on_submit():
+            friend = Friends(form.name.data, form.address.data, form.age.data, form.email.data)
+            db.session.add(friend)
+            db.session.commit()
+            flash("Friend named {0} added succesfully!".format(form.name.data))
+        else:
+            flash('Invalid information given. Please check the friend info.')
+            return render_template('template_register.html')
+
 #this is a comment
 
 """

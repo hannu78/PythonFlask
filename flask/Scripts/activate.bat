@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\Ohjelmistokehitys\Documents\GITworkarea\PythonFlask\flask"
+set "VIRTUAL_ENV=C:\Users\Hannu\Documents\Ohjelmistokehitys\git_workarea\PythonFlask\flask"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

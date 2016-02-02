@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {%block title%}Hello{% endblock %}
 {%block head%}{{super()}}{%endblock%}
-{%block navbar%}{{super()}}{%endblock%}
 {%block content%}{{super()}}{%endblock%}
-{%block body%}World!{%endblock%}
+{%block navbar%}{{super()}}{%endblock%}
+{%block body%}
+{{super()}}
+World!
+{%endblock%}
