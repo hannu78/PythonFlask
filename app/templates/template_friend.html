@@ -3,17 +3,8 @@
 {% block title %}Login {{super()}}{% endblock %}
 {% block head %}
     {{super()}}
-    {# this is just an example of extending the content inherited from parent #}
-    <style>
-        .my_container {
-            width: 500px;
-            margin: 30px auto;
-            padding: 8px;
-            border: 2px solid gray;
-            border-radius: 5px;
-            background-color: beige;
-        }
-    </style>
+    <link href="/static/css/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
 {% endblock %}
 {% block navbar %}{{super()}}{% endblock %}
 {% block body %}
@@ -28,8 +19,6 @@
             {{ form.address(class = 'form-control', id = 'address') }}
             {{ form.age.label }}
             {{ form.age(class = 'form-control', id = 'age') }}
-            {{ form.email.label }}
-            {{ form.email(class = 'form-control', id = 'email') }}
             
             {{ form.submit(class = 'btn btn-default') }}
         </form>

@@ -10,17 +10,19 @@ class User(db.Model):
     def __init__(self, email, password):
         self.email = email
         self.password = password
+    def __str__(self):
+        return self.email + ' ' + self.password + ' ' + str(self.id)
 
 class Friends(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     address = db.Column(db.String)
     age = db.Column(db.Integer)
-    email = db.Column(db.String)
     user_id= db.Column(db.Integer,db.ForeignKey('user.id'))
-    def __init__(self, name, address, age, email, user_id):
+    def __init__(self, name, address, age, user_id):
         self.name = name
         self.address = address
         self.age = age
-        self.email = email
         self.user_id = user_id
+    def __str__(self):
+        return self.name + ' ' + self.address + ' ' + str(self.age) + ' ' + str(self.user_id)

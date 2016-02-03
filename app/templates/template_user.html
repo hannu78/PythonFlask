@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 {%block title%}Hello{% endblock %}
-{%block head%}{{super()}}{%endblock%}
+{%block head%}
+{{super()}}
+{%endblock%}
 {%block content%}{{super()}}{%endblock%}
 {%block navbar%}{{super()}}{%endblock%}
 {%block body%}
-{{super()}}
-World!
+    {{super()}}
+    <div class = my_container>
+        <table class = "table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in friends %}
+                    <tr>
+                        <td>{{item.name}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.age}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>          
+    </div>
 {%endblock%}
