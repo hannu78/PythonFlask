@@ -1,5 +1,6 @@
 #name (db here) depends on the definition in init
 from app import db
+from flask.ext.bcrypt import generate_password_hash
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -9,15 +10,16 @@ class User(db.Model):
     """Define the class constructor"""
     def __init__(self, email, password):
         self.email = email
-        self.password = password
-    def __str__(self):
-        return self.email + ' ' + self.password + ' ' + str(self.id)
+        self.password = generate_password_hash(password)
+    #def __str__(self):
+    #    return self.email + ' ' + self.password + ' ' + str(self.id)
 
 class Friends(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String)
     address = db.Column(db.String)
     age = db.Column(db.Integer)
+    filename = db.Column(db.String, default = "/app/static/images/lataus.jpg")
     user_id= db.Column(db.Integer,db.ForeignKey('user.id'))
     def __init__(self, name, address, age, user_id):
         self.name = name
