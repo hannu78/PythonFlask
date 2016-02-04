@@ -32,7 +32,7 @@ def addFriend():
             if form.upload_file.data:
                 filename = secure_filename(form.upload_file.data.filename)
                 form.upload_file.data.save('app/static/images/' + filename)
-                friend.filename = 'app/static/images/' + filename
+                friend.filename = '/static/images/' + filename
             db.session.add(friend)
             db.session.commit()
             flash("Friend named {0} added succesfully!".format(form.name.data))
