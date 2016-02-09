@@ -19,7 +19,8 @@
             {{ form.address(class = 'form-control', id = 'address') }}
             {{ form.age.label }}
             {{ form.age(class = 'form-control', id = 'age') }}
-            {{ form.upload_file(class = 'btn btn-default')}}
+            
+            {{ form.upload_file(accept=".png,.jpg")}} <br/>
             
             {{ form.submit(class = 'btn btn-default') }}
         </form>

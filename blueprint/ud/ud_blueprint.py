@@ -13,7 +13,11 @@ ud = Blueprint('ud', __name__, template_folder = 'templates', url_prefix = ('/ap
 def delete(id):
     # pass doesn't do anything, it just continues
     # pass
-    return "Delete"
+    friend = Friends.query.get(id)
+    db.session.delete(friend)
+    db.session.commit()
+    user = User.query.get(session['user_id'])
+    return render_template('template_user.html',isLogged=True,friends=user.friends)
 
 @ud.route('update')
 def update():
@@ -49,8 +53,8 @@ def listUsers():
     else:
         user = User.query.filter_by(email=session['username']).first()
         userid = user.id
-        friends = Friends.query.filter_by(user_id = userid)
-        return render_template('template_user.html', friends = friends)
+        friends = Friends.query.filter_by(user_id = userid).paginate(1,10,False)
+        return render_template('template_user.html',isLogged=True, friends = friends)
 
 def before_request():
     if not 'isLogged' in session:

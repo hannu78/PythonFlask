@@ -7,7 +7,7 @@ from app.forms import LoginForm, RegisterForm
 login = Blueprint('login', __name__, template_folder = 'templates')
 
 @login.route('/', methods = ['GET', 'POST'])
-def index():
+def index(page=1):
     login = LoginForm()
     #Check method
     if request.method == 'GET':
@@ -25,7 +25,7 @@ def index():
                 session['user_id'] = user[0].id
                 session['isLogged'] = True
                 #tapa 1
-                friends = Friends.query.filter_by(user_id=user[0].id)
+                friends = Friends.query.filter_by(user_id=user[0].id).paginate(page,10,False)
                 return render_template('template_user.html', isLogged=True, friends=friends)
                 #return redirect ("/users")
             else:
